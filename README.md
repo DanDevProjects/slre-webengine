@@ -54,11 +54,13 @@ Remove the flag if you like to debug or see logs.
 --onefire or onedir: choose between one file or one directory.
 
 --icon=: add this flag if you would like to add an icon.
+
 4. Find Your App
 PyInstaller will create 2 new folders named "dist" and "build". Navigate to the list folder, and click on the executable file.
 - .exe: Windows
 - .app: macOS
 - [No file extension shown]: Linux (Will display as a executable file)
+  
 5. Start using
 You can first type in your search query or URL on the search bar and press enter or click on Go.
 
