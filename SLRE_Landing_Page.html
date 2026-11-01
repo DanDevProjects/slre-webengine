@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLRE - Simple Lightweight Rendering Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f6f8fa; color: #24292e; }
+        .font-mono { font-family: 'Fira Code', monospace; }
+        .ascii-art { image-rendering: pixelated; }
+    </style>
+</head>
+<body class="bg-[#f6f8fa] text-[#24292e] dark:bg-[#0d1117] dark:text-[#c9d1d9] min-h-screen flex flex-col justify-between transition-colors duration-200 selection:bg-blue-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-[#161b22]/90 backdrop-blur border-b border-slate-200 dark:border-[#30363d] px-4 lg:px-8 py-3 flex items-center justify-between transition-colors duration-200 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <a href="#" class="flex items-center">
+                <img src="https://i.ibb.co/KcKQFLv5/ascii-text-art.png" alt="SLRE Logo" class="h-8 md:h-9 w-auto object-contain ascii-art">
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-[#8b949e]">
+            <a href="#search" class="hover:text-slate-900 dark:hover:text-white transition">Search</a>
+            <a href="#internal" class="hover:text-slate-900 dark:hover:text-white transition">Internal Pages</a>
+            <a href="#engine" class="hover:text-slate-900 dark:hover:text-white transition">Independent Engine</a>
+        </nav>
+        <div class="flex items-center space-x-3">
+            <!-- Theme Toggle Button -->
+            <button onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle theme" class="px-3 py-1.5 rounded-md bg-slate-100 dark:bg-[#21262d] hover:bg-slate-200 dark:hover:bg-[#30363d] border border-slate-200 dark:border-[#30363d] text-slate-700 dark:text-white text-sm font-medium transition shadow-sm flex items-center space-x-1.5">
+                <span id="themeText">Dark Mode</span>
+            </button>
+            <a href="https://github.com/DanDevProjects/slre-webengine" target="_blank" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 dark:bg-[#21262d] dark:hover:bg-[#30363d] border border-slate-800 dark:border-[#30363d] text-white text-sm font-medium transition shadow-sm">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <section class="max-w-5xl mx-auto px-4 pt-16 pb-12 text-center">
+            <div class="inline-block mb-8 p-6 rounded-2xl bg-white dark:bg-[#161b22] border border-slate-200 dark:border-[#30363d] shadow-sm transition-colors duration-200">
+                <img src="https://i.ibb.co/KcKQFLv5/ascii-text-art.png" alt="SLRE Logo Banner" class="mx-auto max-h-32 md:max-h-40 object-contain ascii-art">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+                Simple Lightweight Rendering Engine
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 dark:text-[#8b949e] max-w-2xl mx-auto mb-8 font-normal">
+                Minimal Python web browser &amp; custom rendering engine with PyQt6
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/DanDevProjects/slre-webengine" target="_blank" class="px-6 py-2.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition shadow-md inline-flex items-center space-x-2">
+                    <span>View Repository on GitHub</span>
+                    <span>&rarr;</span>
+                </a>
+                <a href="#engine" class="px-6 py-2.5 rounded-md bg-white dark:bg-[#161b22] hover:bg-slate-50 dark:hover:bg-[#1f242c] border border-slate-200 dark:border-[#30363d] text-slate-800 dark:text-white font-semibold text-sm transition shadow-sm">
+                    Explore Architecture
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 1: Search The World Wide Web -->
+        <section id="search" class="max-w-6xl mx-auto px-4 py-12 border-t border-slate-200 dark:border-[#30363d] transition-colors duration-200">
+            <div class="mb-10 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">Search The World Wide Web</h2>
+                <p class="text-slate-600 dark:text-[#8b949e] max-w-xl mx-auto text-sm md:text-base">
+                    Seamlessly route queries through <span class="text-blue-600 dark:text-[#58a6ff] font-medium">DuckDuckGo Lite</span> (POST-based) or explore retro-friendly web discovery via the <span class="text-blue-600 dark:text-[#58a6ff] font-medium">FrogFind</span> pack.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- DuckDuckGo Lite Card -->
+                <div class="bg-white dark:bg-[#161b22] border border-slate-200 dark:border-[#30363d] rounded-xl overflow-hidden p-5 flex flex-col justify-between shadow-sm hover:shadow transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 dark:text-white text-lg">DuckDuckGo Lite</h3>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-[#388bfd]/20 text-blue-600 dark:text-[#58a6ff] border border-blue-200 dark:border-[#388bfd]/30">Default Search</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-[#8b949e] text-sm mb-4">
+                            Directly sends form-encoded POST queries to DuckDuckGo Lite for swift, lightweight searches right inside the browser window.
+                        </p>
+                    </div>
+                    <div class="rounded-lg overflow-hidden border border-slate-200 dark:border-[#30363d] bg-slate-50 dark:bg-[#0d1117] shadow-inner cursor-pointer" onclick="openModal(this.querySelector('img').src)">
+                        <img src="https://i.ibb.co/HfFWtgmb/Screenshot-2026-11-01-at-7-43-33-PM.png" alt="DuckDuckGo Lite Screenshot" class="w-full h-auto object-cover hover:scale-105 transition duration-300">
+                    </div>
+                </div>
+
+                <!-- FrogFind Card -->
+                <div class="bg-white dark:bg-[#161b22] border border-slate-200 dark:border-[#30363d] rounded-xl overflow-hidden p-5 flex flex-col justify-between shadow-sm hover:shadow transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 dark:text-white text-lg">FrogFind Pack</h3>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-50 dark:bg-[#2ea043]/25 text-emerald-600 dark:text-[#3fb950] border border-emerald-200 dark:border-[#2ea043]/30">Retro Pack</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-[#8b949e] text-sm mb-4">
+                            Brought back as a dedicated search pack to browse text-first web content with lightning speed and zero bloat.
+                        </p>
+                    </div>
+                    <div class="rounded-lg overflow-hidden border border-slate-200 dark:border-[#30363d] bg-slate-50 dark:bg-[#0d1117] shadow-inner cursor-pointer" onclick="openModal(this.querySelector('img').src)">
+                        <img src="https://i.ibb.co/9HtjXn5r/Screenshot-2026-11-01-at-7-44-35-PM.png" alt="FrogFind Screenshot" class="w-full h-auto object-cover hover:scale-105 transition duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Useful Internal Websites -->
+        <section id="internal" class="max-w-6xl mx-auto px-4 py-12 border-t border-slate-200 dark:border-[#30363d] transition-colors duration-200">
+            <div class="mb-10 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">Useful Internal Websites</h2>
+                <p class="text-slate-600 dark:text-[#8b949e] max-w-xl mx-auto text-sm md:text-base">
+                    SLRE features custom <code class="text-blue-600 dark:text-[#58a6ff] bg-slate-100 dark:bg-[#21262d] px-1.5 py-0.5 rounded font-mono text-xs">slre://</code> protocol system pages built right into the core architecture.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- About Page Card -->
+                <div class="bg-white dark:bg-[#161b22] border border-slate-200 dark:border-[#30363d] rounded-xl overflow-hidden p-5 flex flex-col justify-between shadow-sm hover:shadow transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 dark:text-white text-lg"><code class="text-blue-600 dark:text-[#58a6ff]">slre://about</code></h3>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-50 dark:bg-[#8957e5]/20 text-purple-600 dark:text-[#d2a8ff] border border-purple-200 dark:border-[#8957e5]/30">System Telemetry</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-[#8b949e] text-sm mb-4">
+                            Displays live memory usage tracking via <code class="font-mono text-xs text-slate-800 dark:text-white">psutil</code>, system platform specs, and open-source credits.
+                        </p>
+                    </div>
+                    <div class="rounded-lg overflow-hidden border border-slate-200 dark:border-[#30363d] bg-slate-50 dark:bg-[#0d1117] shadow-inner cursor-pointer" onclick="openModal(this.querySelector('img').src)">
+                        <img src="https://i.ibb.co/p6y5MCz1/Screenshot-2026-11-01-at-7-45-23-PM.png" alt="About Page Screenshot" class="w-full h-auto object-cover hover:scale-105 transition duration-300">
+                    </div>
+                </div>
+
+                <!-- Home Page Card -->
+                <div class="bg-white dark:bg-[#161b22] border border-slate-200 dark:border-[#30363d] rounded-xl overflow-hidden p-5 flex flex-col justify-between shadow-sm hover:shadow transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 dark:text-white text-lg"><code class="text-blue-600 dark:text-[#58a6ff]">slre://home</code></h3>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-orange-50 dark:bg-[#db6d28]/20 text-orange-600 dark:text-[#ffa657] border border-orange-200 dark:border-[#db6d28]/30">Splash Screen</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-[#8b949e] text-sm mb-4">
+                            The clean ASCII splash screen greeting users upon launch with instant URL bar focus and quick navigation guides.
+                        </p>
+                    </div>
+                    <div class="rounded-lg overflow-hidden border border-slate-200 dark:border-[#30363d] bg-slate-50 dark:bg-[#0d1117] shadow-inner cursor-pointer" onclick="openModal(this.querySelector('img').src)">
+                        <img src="https://i.ibb.co/8gB6BYdL/Screenshot-2026-11-01-at-7-47-34-PM.png" alt="Home Page Screenshot" class="w-full h-auto object-cover hover:scale-105 transition duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Independent Engine -->
+        <section id="engine" class="max-w-6xl mx-auto px-4 py-12 border-t border-slate-200 dark:border-[#30363d] transition-colors duration-200">
+            <div class="mb-10 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">Independent Engine Architecture</h2>
+                <p class="text-slate-600 dark:text-[#8b949e] max-w-xl mx-auto text-sm md:text-base">
+                    Cleanly decoupled into a core parsing engine (<code class="text-blue-600 dark:text-[#58a6ff] font-mono text-xs">engine.py</code>) and a native UI shell (<code class="text-blue-600 dark:text-[#58a6ff] font-mono text-xs">slre.py</code>).
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-[#161b22] border border-slate-200 dark:border-[#30363d] rounded-2xl p-6 md:p-8 max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 shadow-sm">
+                <div class="w-full md:w-1/2 flex justify-center bg-slate-50 dark:bg-[#0d1117] p-6 rounded-xl border border-slate-200 dark:border-[#30363d]">
+                    <img src="https://i.ibb.co/Lhgrt0s6/ascii-text-art-2.png" alt="Independent Engine Architecture" class="max-h-40 object-contain ascii-art">
+                </div>
+                <div class="w-full md:w-1/2 space-y-4">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Built for Modularity and Distribution</h3>
+                    <p class="text-slate-600 dark:text-[#8b949e] text-sm leading-relaxed">
+                        The core parser handles HTML parsing, tag hierarchy, robust form submissions (GET and POST), image fetching, and link routing independently. This allows developers to embed the SLRE engine into any Python project or package it with PyInstaller.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-[#21262d] border border-slate-200 dark:border-[#30363d] text-xs font-mono text-blue-600 dark:text-[#58a6ff]">Python 3</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-[#21262d] border border-slate-200 dark:border-[#30363d] text-xs font-mono text-blue-600 dark:text-[#58a6ff]">PyQt6</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-[#21262d] border border-slate-200 dark:border-[#30363d] text-xs font-mono text-blue-600 dark:text-[#58a6ff]">HTMLParser</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-[#161b22] border-t border-slate-200 dark:border-[#30363d] py-8 px-4 text-center text-sm text-slate-600 dark:text-[#8b949e] transition-colors duration-200">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <span class="text-slate-900 dark:text-white font-bold">SLRE</span>
+                <span>Simple Lightweight Rendering Engine</span>
+            </div>
+            <div>
+                &copy; 2026 DanDevProjects. All rights reserved.
+            </div>
+            <div>
+                <a href="https://github.com/DanDevProjects/slre-webengine" target="_blank" class="text-blue-600 dark:text-[#58a6ff] hover:underline font-medium">github.com/DanDevProjects/slre-webengine</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 cursor-pointer" onclick="closeModal()">
+        <div class="relative max-w-4xl max-h-[90vh] overflow-hidden rounded-xl border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#161b22] p-2 shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-slate-100 dark:bg-[#21262d] text-slate-700 dark:text-white flex items-center justify-center font-bold hover:bg-slate-200 dark:hover:bg-[#30363d] transition">✕</button>
+            <img id="modalImage" src="" alt="Enlarged Screenshot" class="max-w-full max-h-[80vh] object-contain rounded-lg mx-auto">
+        </div>
+    </div>
+
+    <script>
+        // Light mode is default (no 'dark' class on html initially).
+        function toggleTheme() {
+            const htmlEl = document.documentElement;
+            const themeText = document.getElementById('themeText');
+            
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                themeText.textContent = 'Dark Mode';
+                localStorage.setItem('slre_theme', 'light');
+            } else {
+                htmlEl.classList.add('dark');
+                themeText.textContent = 'Light Mode';
+                localStorage.setItem('slre_theme', 'dark');
+            }
+        }
+
+        // Initialize theme based on localStorage or default to light mode
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('slre_theme');
+            const themeText = document.getElementById('themeText');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeText.textContent = 'Light Mode';
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeText.textContent = 'Dark Mode';
+            }
+        });
+
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
