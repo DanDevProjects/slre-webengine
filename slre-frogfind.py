@@ -434,11 +434,11 @@ class SLREWindow(QMainWindow):
         art_color = "#e0e0e0" if self.is_dark_mode else "#333333"
         ascii_art = QLabel(
             f"<pre style='font-family: Courier New; color: {art_color}; margin: 0;'>"
-            "  ####     #     #####   ##### \n"
-            " #         #     #    #  #    #\n"
-            "  ###      #     #####   ##### \n"
-            "     #     #     #   #   #    # \n"
-            "  ####     ###### #    #  ##### "
+            "  ####    #      #####   ##### \n"
+            " #        #      #    #  #     \n"
+            "  ###     #      #####   ##### \n"
+            "     #    #      #   #   #     \n"
+            "  ####    ###### #    #  ##### "
             "</pre>"
         )
         self.document_layout.addWidget(ascii_art)
