@@ -21,15 +21,15 @@ You will also need:
  ```bash
  git clone https://github.com/DanDevProjects/slre-webengine.git
  ```
-2.Navigate to the directory:
+2. Navigate to the directory:
    ```bash
    cd slre-webengine
    ```
-3.Install Dependencies:
+3. Install Dependencies:
 ```bash
 python3 -m pip install pyqt6 & python3 -m pip install js2py & python3 -m pip install psutil
 ```
-4.Run now!
+4. Run now!
 ```bash
 python3 slre.py
 ```
@@ -59,8 +59,8 @@ Remove the flag if you like to debug or see logs.
 PyInstaller will create 2 new folders named "dist" and "build". Navigate to the list folder, and click on the executable file.
 - .exe: Windows
 - .app: macOS
-- [No file extension shown]: Linux (Will display as a executable file)
-  
+- No file extension shown: Linux (Will display as a executable file)
+
 5. Start using
 You can first type in your search query or URL on the search bar and press enter or click on Go.
 
